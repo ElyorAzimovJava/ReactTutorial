@@ -1,7 +1,7 @@
 const express = require("express")
 const server = express();
 const cors = require("cors");
-
+server.use(express.static("dist"));
 const database = require("./database")
 server.use(cors());
 server.listen(4000);

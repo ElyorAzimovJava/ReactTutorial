@@ -1,10 +1,14 @@
 import {useEffect, useState} from "react";
 
 function DigitalClock(){
-    const [count, setCount] = useState(0);
+    const [hour, setHour] = useState(new Date().getHours());
+    const [minute, setMinute] = useState(new Date().getMinutes());
+    const [second, setSecond] = useState(new Date().getSeconds());
     useEffect(() => { // will be called when component mounts
        const timerId=  window.setInterval(() => {
-           setCount(count =>  count+1);
+            setHour(new Date().getHours());
+            setMinute(new Date().getMinutes());
+            setSecond(new Date().getSeconds());
         }, 1000);
        //DTOR : Will be called before component is killed
         // Register a lambda to be called when component unmounts
@@ -12,6 +16,10 @@ function DigitalClock(){
           window.clearInterval(timerId);
         }
     },[])
-    return (<>{count}</>);
+    return (<>
+
+        <h1>
+            {hour}:{minute}:{second}</h1>
+        </>);
 }
 export default DigitalClock;

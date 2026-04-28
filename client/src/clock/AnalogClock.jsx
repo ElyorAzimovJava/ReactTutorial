@@ -71,20 +71,19 @@ function AnalogClock(){
         ctx.stroke();
         ctx.rotate(-pos);
     }
-
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         let radius = canvas.height / 2;
         ctx.translate(radius, radius);
-        radius = radius * 0.90
         const timerId =  setInterval(()=> drawClock(ctx, radius), 1000);
         return () => {
             clearInterval(timerId);
+            ctx.translate(-radius, -radius);
         }
     }, []);
     return (<>
-        <canvas ref={canvasRef} width="400" height="400" style={{backgroundColor:"#333"}}></canvas>
+        <canvas ref={canvasRef} width={400} height={400} style={{backgroundColor:"#333"}}></canvas>
     </>);
 }
 export default AnalogClock;
